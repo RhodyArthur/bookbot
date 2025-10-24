@@ -1,3 +1,4 @@
+import sys
 from stats import get_num_words
 from stats import get_num_chars
 from stats import print_sorted_report
@@ -12,7 +13,11 @@ def get_book_text(path_to_file):
     
 
 def main():
-    book_string = get_book_text('books/frankenstein.txt')
+    if len(sys.argv) > 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    path_to_book = sys.argv[1]
+    book_string = get_book_text(path_to_book)
     
     print (f"""
     ============ BOOKBOT ============
@@ -23,4 +28,5 @@ def main():
     {print_sorted_report(get_num_chars(book_string))}
     ============= END ===============
     """)
+    
 main()
